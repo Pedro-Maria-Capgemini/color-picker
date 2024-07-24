@@ -33,10 +33,10 @@ test('should display the correct color square based on API response', async ({ p
 
   // Mock the API to return a specific color
   await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', async (route) => {
-    void route.fulfill({
+    await route.fulfill({
       status: 200,
       body: 'red',
-    });
+    }).catch(error => console.error(error));
   });
 
   // Enter a valid number within the range
@@ -57,10 +57,10 @@ test('should display an error message when the API request fails', async ({ page
 
   // Mock the API to return an error
   await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', async (route) => {
-    void route.fulfill({
+    await route.fulfill({
       status: 500,
       body: 'Error fetching data', // Mock API to return an error message
-    });
+    }).catch(error => console.error(error));
   });
 
   // Enter a valid number within the range
