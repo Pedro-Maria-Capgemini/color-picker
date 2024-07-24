@@ -32,8 +32,8 @@ test('should display the correct color square based on API response', async ({ p
   await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Mock the API to return a specific color
-  await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', route => {
-    void route.fulfill({
+  await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', async (route) => {
+    await route.fulfill({
       status: 200,
       body: 'red', 
     });
@@ -56,8 +56,8 @@ test('should display an error message when the API request fails', async ({ page
   await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Mock the API to return an error
-  await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', route => {
-    void route.fulfill({
+  await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', async (route) => {
+    await route.fulfill({
       status: 500,
       body: 'Error fetching data', // Mock API to return an error message
     });
