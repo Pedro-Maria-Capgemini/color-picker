@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('should display the input field and submit button', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Check if the input field exists
   const inputField = page.locator('input[type="text"]');
@@ -13,7 +13,7 @@ test('should display the input field and submit button', async ({ page }) => {
 });
 
 test('should display a warning message when input is out of range', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Enter an invalid number (out of range)
   const inputField = page.locator('input[type="text"]');
@@ -29,11 +29,11 @@ test('should display a warning message when input is out of range', async ({ pag
 });
 
 test('should display the correct color square based on API response', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Mock the API to return a specific color
   await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', route => {
-    route.fulfill({
+    void route.fulfill({
       status: 200,
       body: 'red', 
     });
@@ -53,11 +53,11 @@ test('should display the correct color square based on API response', async ({ p
 });
 
 test('should display an error message when the API request fails', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Mock the API to return an error
   await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', route => {
-    route.fulfill({
+    void route.fulfill({
       status: 500,
       body: 'Error fetching data', // Mock API to return an error message
     });
@@ -77,7 +77,7 @@ test('should display an error message when the API request fails', async ({ page
 });
 
 test('should handle invalid input gracefully', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Enter invalid input (non-numeric)
   const inputField = page.locator('input[type="text"]');
@@ -93,7 +93,7 @@ test('should handle invalid input gracefully', async ({ page }) => {
 });
 
 test('should update input value on change', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Enter a valid number within the range
   const inputField = page.locator('input[type="text"]');
@@ -104,7 +104,7 @@ test('should update input value on change', async ({ page }) => {
 });
 
 test('should display the initial input value', async ({ page }) => {
-  await page.goto('https://first-app-nine-black.vercel.app/'); // Replace with your actual app URL
+  await page.goto('http://localhost:3000'); // Replace with your actual app URL
 
   // Check if the input field has the initial value
   const inputField = page.locator('input[type="text"]');
