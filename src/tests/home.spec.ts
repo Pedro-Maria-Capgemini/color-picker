@@ -35,7 +35,7 @@ test('should display the correct color square based on API response', async ({ p
   await page.route('**/ServiceTesting/rest/ColorPicker/GetColor/?int=25', async (route) => {
     await route.fulfill({
       status: 200,
-      body: 'red', 
+      body: 'red',
     });
   });
 
